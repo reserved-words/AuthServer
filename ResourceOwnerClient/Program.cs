@@ -20,6 +20,7 @@ namespace ResourceOwnerClient
             if (disco.IsError)
             {
                 Console.WriteLine(disco.Error);
+                Console.ReadKey();
                 return;
             }
 
@@ -38,6 +39,7 @@ namespace ResourceOwnerClient
             if (tokenResponse.IsError)
             {
                 Console.WriteLine(tokenResponse.Error);
+                Console.ReadKey();
                 return;
             }
 
@@ -58,6 +60,8 @@ namespace ResourceOwnerClient
                 var content = response.Content.ReadAsStringAsync().Result;
                 Console.WriteLine(JArray.Parse(content));
             }
+
+            Console.ReadKey();
         }
     }
 }

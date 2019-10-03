@@ -20,6 +20,7 @@ namespace Client
             if (disco.IsError)
             {
                 Console.WriteLine(disco.Error);
+                Console.ReadKey();
                 return;
             }
 
@@ -36,6 +37,7 @@ namespace Client
             if (tokenResponse.IsError)
             {
                 Console.WriteLine(tokenResponse.Error);
+                Console.ReadKey();
                 return;
             }
 
@@ -56,6 +58,8 @@ namespace Client
                 var content = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(JArray.Parse(content));
             }
+
+            Console.ReadKey();
         }
     }
 }

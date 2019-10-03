@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourceOwnerClient", "Reso
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcClient", "MvcClient\MvcClient.csproj", "{EE1CCEAF-6ED3-4E15-89E4-89DBB4840A02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Data", "IdentityServer.Data\IdentityServer.Data.csproj", "{CA9D5512-985A-44B7-BF62-9E71EE7E7427}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Data", "IdentityServer.Data\IdentityServer.Data.csproj", "{CA9D5512-985A-44B7-BF62-9E71EE7E7427}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Common", "IdentityServer.Common\IdentityServer.Common.csproj", "{2EEA3820-8517-4C8B-8A3A-5FFB857A9C04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Common", "IdentityServer.Common\IdentityServer.Common.csproj", "{2EEA3820-8517-4C8B-8A3A-5FFB857A9C04}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AuthServer.Sql", "AuthServer.Sql\AuthServer.Sql.sqlproj", "{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,24 @@ Global
 		{2EEA3820-8517-4C8B-8A3A-5FFB857A9C04}.Release|x64.Build.0 = Release|Any CPU
 		{2EEA3820-8517-4C8B-8A3A-5FFB857A9C04}.Release|x86.ActiveCfg = Release|Any CPU
 		{2EEA3820-8517-4C8B-8A3A-5FFB857A9C04}.Release|x86.Build.0 = Release|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Debug|x64.Build.0 = Debug|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Debug|x86.Build.0 = Debug|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|x64.ActiveCfg = Release|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|x64.Build.0 = Release|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|x64.Deploy.0 = Release|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|x86.ActiveCfg = Release|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|x86.Build.0 = Release|Any CPU
+		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
