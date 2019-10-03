@@ -13,9 +13,6 @@ namespace IdentityServer
     {
         public async Task<Client> FindClientByIdAsync(string clientId)
         {
-            var clients = Config.GetClients();
-            return clients.Single(c => c.ClientId == clientId);
-            
             var client = new Client();
 
             var connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=auth;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True";
