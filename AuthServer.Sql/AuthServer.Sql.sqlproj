@@ -71,7 +71,4 @@
   <ItemGroup>
     <RefactorLog Include="AuthServer.Sql.refactorlog" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="AuthServer.Sql.publish.xml" />
-  </ItemGroup>
 </Project>
