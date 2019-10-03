@@ -3,7 +3,10 @@
 
 
 using System;
+using System.Threading.Tasks;
 using IdentityServer4;
+using IdentityServer4.Test;
+using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +34,7 @@ namespace IdentityServer
             var builder = services.AddIdentityServer()
                 .AddResourceStore<ResourceStore>()
                 .AddClientStore<ClientStore>();
-            
+
             if (Environment.IsDevelopment())
             {
                 builder.AddDeveloperSigningCredential();

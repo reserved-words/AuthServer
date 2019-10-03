@@ -13,8 +13,8 @@ namespace IdentityServer
     {
         public async Task<Client> FindClientByIdAsync(string clientId)
         {
-            //var clients = Config.GetClients();
-            //return clients.Single(c => c.ClientId == clientId);
+            var clients = Config.GetClients();
+            return clients.Single(c => c.ClientId == clientId);
             
             var client = new Client();
 
