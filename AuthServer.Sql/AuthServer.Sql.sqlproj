@@ -67,6 +67,8 @@
     <Build Include="Tables\ClientProperties.sql" />
     <Build Include="Stored Procedures\FindClientById.sql" />
     <Build Include="Tables\ClientGrantTypes.sql" />
+    <Build Include="Tables\Providers.sql" />
+    <Build Include="Stored Procedures\FindProviderById.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AuthServer.Sql.refactorlog" />
