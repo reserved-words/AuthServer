@@ -69,6 +69,16 @@
     <Build Include="Tables\ClientGrantTypes.sql" />
     <Build Include="Tables\Providers.sql" />
     <Build Include="Stored Procedures\FindProviderById.sql" />
+    <Build Include="Tables\ApiResources.sql" />
+    <Build Include="Stored Procedures\FindApiResourceByName.sql" />
+    <Build Include="Tables\ApiResourceSecrets.sql" />
+    <Build Include="Tables\ApiResourceScopes.sql" />
+    <Build Include="Tables\ApiResourceClaims.sql" />
+    <Build Include="Tables\ApiResourceProperties.sql" />
+    <Build Include="Stored Procedures\GetApiResources.sql" />
+    <Build Include="Stored Procedures\FindApiResourcesByScope.sql" />
+    <Build Include="Tables\Scopes.sql" />
+    <Build Include="Tables\ApiResourceScopeClaims.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AuthServer.Sql.refactorlog" />

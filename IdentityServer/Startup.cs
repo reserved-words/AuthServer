@@ -12,7 +12,7 @@ namespace IdentityServer
     public class Startup
     {
         public IHostingEnvironment Environment { get; }
-
+        
         public Startup(IHostingEnvironment environment)
         {
             Environment = environment;
@@ -26,7 +26,8 @@ namespace IdentityServer
 
             services
                 .AddTransient<IUserStore, UserStore>()
-                .AddTransient<IProviderStore, ProviderStore>();
+                .AddTransient<IProviderStore, ProviderStore>()
+                .AddTransient<IDataFetcher, DataFetcher>();
 
             var builder = services.AddIdentityServer()
                 .AddResourceStore<ResourceStore>()
@@ -56,8 +57,9 @@ namespace IdentityServer
                         RoleClaimType = "role"
                     };
                 });
-
-            var googleProvider = new ProviderStore().FindProviderById("Google");
+            
+            var serviceProvider = services.BuildServiceProvider();
+            var googleProvider = serviceProvider.GetService<IProviderStore>().FindProviderById("Google");
             if (googleProvider != null)
             {
                 authBuilder.AddGoogle("Google", options =>

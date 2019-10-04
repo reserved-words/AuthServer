@@ -42,4 +42,53 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ClientId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="5a3e7fa8-9b85-4f4e-96d0-ae1cab49c62d" ChangeDateTime="10/03/2019 15:13:26">
+    <Property Name="ElementName" Value="[dbo].[ApiResources].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ApiResources]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f0ac637a-c7a4-40af-99f4-5377f344da4f" ChangeDateTime="10/03/2019 15:19:08">
+    <Property Name="ElementName" Value="[dbo].[ClientSecrets].[ClientId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ClientSecrets]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResourceName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1525f7b2-3953-41ba-b552-44b53aebe345" ChangeDateTime="10/03/2019 15:25:34">
+    <Property Name="ElementName" Value="[dbo].[ApiResourceClaims].[Scope]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ApiResourceClaims]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CLaim" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="175524f3-3559-4f18-9ddd-0f4fb71aca60" ChangeDateTime="10/03/2019 15:25:38">
+    <Property Name="ElementName" Value="[dbo].[ApiResourceClaims].[CLaim]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ApiResourceClaims]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Claim" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3ddb2576-3169-4b1f-bb8e-a2a9e1ee0f64" ChangeDateTime="10/03/2019 15:26:50">
+    <Property Name="ElementName" Value="[dbo].[ApiResourceProperties].[ClientId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ApiResourceProperties]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResourceName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c6abac76-11a2-4e99-aab6-238a4eecb422" ChangeDateTime="10/03/2019 19:20:53">
+    <Property Name="ElementName" Value="[dbo].[Scopes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Scopes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="faf921d0-f214-4a95-b6d6-1d2bbeae0a47" ChangeDateTime="10/03/2019 19:21:54">
+    <Property Name="ElementName" Value="[dbo].[ApiResourceScopes].[Scope]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ApiResourceScopes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ScopeName" />
+  </Operation>
 </Operations>

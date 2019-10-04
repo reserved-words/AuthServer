@@ -11,82 +11,71 @@ namespace IdentityServer
 {
     public class ClientStore : IClientStore
     {
+        private readonly IDataFetcher _dataFiller;
+
+        public ClientStore(IDataFetcher dataFiller)
+        {
+            _dataFiller = dataFiller;
+        }
+
         public async Task<Client> FindClientByIdAsync(string clientId)
         {
             var client = new Client();
 
-            var connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=auth;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True";
+            var dataTables = Enumerable.Range(0, 5).Select(i => new DataTable()).ToArray();
 
-            using (var connection = new SqlConnection(connectionString))
+            await _dataFiller.FillAsync(dataTables, "FindClientById", new SqlParameter("@ClientId", clientId));
+
+            var dtClient = dataTables[0];
+            var dtProperties = dataTables[1];
+            var dtScopes = dataTables[2];
+            var dtSecrets = dataTables[3];
+            var dtGrantTypes = dataTables[4];
+
+            if (dtClient.Rows.Count == 0)
+                throw new AuthenticationException();
+
+            var rClient = dtClient.Rows[0] as DataRow;
+            client.ClientId = rClient["ClientId"].ToString();
+            client.ClientName = rClient["ClientName"].ToString();
+            client.Enabled = (bool)rClient["Enabled"];
+            client.AllowOfflineAccess = (bool)rClient["AllowOfflineAccess"];
+            client.EnableLocalLogin = (bool)rClient["EnableLocalLogin"];
+            client.RequireConsent = (bool)rClient["RequireConsent"];
+            client.AllowRememberConsent = (bool)rClient["AllowRememberConsent"];
+            client.ClientUri = rClient["ClientUri"].ToString();
+            client.LogoUri = rClient["LogoUri"].ToString();
+
+            var redirectUri = rClient["RedirectUri"].ToString();
+            if (!string.IsNullOrEmpty(redirectUri))
             {
-                connection.Open();
+                client.RedirectUris = new List<string> { redirectUri };
+            }
 
-                using (var command = new SqlCommand("[dbo].[FindClientById]", connection) { CommandType = CommandType.StoredProcedure })
-                {
-                    command.Parameters.Add(new SqlParameter("@ClientId", clientId));
+            var postLogRedirectUri = rClient["PostLogoutRedirectUri"].ToString();
+            if (!string.IsNullOrEmpty(postLogRedirectUri))
+            {
+                client.PostLogoutRedirectUris = new List<string> { postLogRedirectUri };
+            }
 
-                    var reader = await command.ExecuteReaderAsync();
+            foreach (DataRow row in dtProperties.Rows)
+            {
+                client.Properties.Add(row["Key"].ToString(), row["Value"].ToString());
+            }
 
-                    var dtClient = new DataTable();
-                    var dtProperties = new DataTable();
-                    var dtSecrets = new DataTable();
-                    var dtGrantTypes = new DataTable();
-                    var dtScopes = new DataTable();
+            foreach (DataRow row in dtSecrets.Rows)
+            {
+                client.ClientSecrets.Add(new Secret(row["Secret"].ToString()));
+            }
 
-                    dtClient.Load(reader);
-                    dtProperties.Load(reader);
-                    dtScopes.Load(reader);
-                    dtSecrets.Load(reader);
-                    dtGrantTypes.Load(reader);
+            foreach (DataRow row in dtScopes.Rows)
+            {
+                client.AllowedScopes.Add(row["Scope"].ToString());
+            }
 
-                    if (dtClient.Rows.Count == 0)
-                        throw new AuthenticationException();
-
-                    var rClient = dtClient.Rows[0] as DataRow;
-                    client.ClientId = rClient["ClientId"].ToString();
-                    client.ClientName = rClient["ClientName"].ToString();
-                    client.Enabled = (bool)rClient["Enabled"];
-                    client.AllowOfflineAccess = (bool)rClient["AllowOfflineAccess"];
-                    client.EnableLocalLogin = (bool)rClient["EnableLocalLogin"];
-                    client.RequireConsent = (bool)rClient["RequireConsent"];
-                    client.AllowRememberConsent = (bool)rClient["AllowRememberConsent"];
-                    client.ClientUri = rClient["ClientUri"].ToString();
-                    client.LogoUri = rClient["LogoUri"].ToString();
-
-                    var redirectUri = rClient["RedirectUri"].ToString();
-                    if (!string.IsNullOrEmpty(redirectUri))
-                    {
-                        client.RedirectUris = new List<string> { redirectUri };
-                    }
-
-                    var postLogRedirectUri = rClient["PostLogoutRedirectUri"].ToString();
-                    if (!string.IsNullOrEmpty(postLogRedirectUri))
-                    {
-                        client.PostLogoutRedirectUris = new List<string> { postLogRedirectUri };
-                    }
-
-                    foreach (DataRow row in dtProperties.Rows)
-                    {
-                        client.Properties.Add(row["Key"].ToString(), row["Value"].ToString());
-                    }
-
-                    foreach (DataRow row in dtSecrets.Rows)
-                    {
-                        client.ClientSecrets.Add(new Secret(row["Secret"].ToString()));
-                    }
-
-                    foreach (DataRow row in dtScopes.Rows)
-                    {
-                        client.AllowedScopes.Add(row["Scope"].ToString());
-                    }
-
-                    foreach (DataRow row in dtGrantTypes.Rows)
-                    {
-                        client.AllowedGrantTypes.Add(row["GrantType"].ToString());
-                    }
-                }
-
-                connection.Close();
+            foreach (DataRow row in dtGrantTypes.Rows)
+            {
+                client.AllowedGrantTypes.Add(row["GrantType"].ToString());
             }
 
             return client;
