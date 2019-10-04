@@ -1,11 +1,19 @@
-﻿using System.Data;
+﻿using Microsoft.Extensions.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace IdentityServer
+namespace IdentityServer.Data
 {
     public class DataFetcher : IDataFetcher
     {
+        private readonly IConfiguration _config;
+
+        public DataFetcher(IConfiguration config)
+        {
+            _config = config;
+        }
+
         public void Fill(DataTable[] dataTables, string procedureName, params SqlParameter[] parameters)
         {
             using (var connection = GetConnection())
@@ -89,8 +97,7 @@ namespace IdentityServer
 
         private SqlConnection GetConnection()
         {
-            var connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=auth;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True";
-            var connection = new SqlConnection(connectionString);
+            var connection = new SqlConnection(_config.GetConnectionString("AuthDatabase"));
             connection.Open();
             return connection;
         }
