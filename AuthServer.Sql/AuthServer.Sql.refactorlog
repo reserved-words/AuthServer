@@ -91,4 +91,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ScopeName" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3481c23c-3f5f-4076-ac5c-176cdd4ea415" ChangeDateTime="10/04/2019 08:09:20">
+    <Property Name="ElementName" Value="[dbo].[Users].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Users]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubjectId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="89a54c19-0444-426a-8606-7c060439c231" ChangeDateTime="10/04/2019 08:11:59">
+    <Property Name="ElementName" Value="[dbo].[UserClaims].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserClaims]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubjectId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="adc844c3-6ed9-4e46-9be1-72d04d4de4bf" ChangeDateTime="10/04/2019 08:26:06">
+    <Property Name="ElementName" Value="[dbo].[UserExternalProviders].[Type]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserExternalProviders]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProviderId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="03c09fd1-769c-4873-aff5-700de52e20b2" ChangeDateTime="10/04/2019 08:26:20">
+    <Property Name="ElementName" Value="[dbo].[UserExternalProviders].[Value]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserExternalProviders]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProviderUserId" />
+  </Operation>
 </Operations>
