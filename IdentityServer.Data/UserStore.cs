@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using IdentityServer4.Models;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Claims;
@@ -37,7 +38,7 @@ namespace IdentityServer
         public bool ValidateCredentials(string username, string password)
         {
             var user = FindByUsername(username);
-            return user.Password == password;
+            return user.Password == password.Sha256();
         }
 
         private User GetUserFromDataTables(DataTable[] dataTables)
