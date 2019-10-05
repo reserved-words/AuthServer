@@ -116,7 +116,7 @@ namespace IdentityServer
         public async Task<IEnumerable<IdentityResource>> FindIdentityResourcesByScopeAsync(IEnumerable<string> scopeNames)
         {
             // ScopeNames?
-            return Config.GetIdentityResources();
+            return await Task.Run(() => Config.GetIdentityResources());
         }
 
         public async Task<Resources> GetAllResourcesAsync()

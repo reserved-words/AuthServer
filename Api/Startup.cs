@@ -11,8 +11,8 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvcCore()
-                .AddAuthorization()
-                .AddJsonFormatters();
+                .AddMvcOptions(opt => opt.EnableEndpointRouting = false)
+                .AddAuthorization();
 
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>

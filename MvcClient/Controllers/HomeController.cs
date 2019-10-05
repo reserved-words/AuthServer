@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using System.Net.Http;
-using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
 
 namespace MvcClient.Controllers
 {

@@ -12,9 +12,9 @@ namespace IdentityServer
 {
     public class Startup
     {
-        public IHostingEnvironment Environment { get; }
+        public IWebHostEnvironment Environment { get; }
         
-        public Startup(IHostingEnvironment environment)
+        public Startup(IWebHostEnvironment environment)
         {
             Environment = environment;
         }
@@ -23,7 +23,8 @@ namespace IdentityServer
         {
             services
                 .AddMvc()
-                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+                .AddMvcOptions(opt => opt.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services
                 .AddTransient<IUserStore, UserStore>()
@@ -34,7 +35,7 @@ namespace IdentityServer
                 .AddResourceStore<ResourceStore>()
                 .AddClientStore<ClientStore>();
 
-            if (Environment.IsDevelopment())
+            if (Environment.EnvironmentName == "Development")
             {
                 builder.AddDeveloperSigningCredential();
             }
@@ -58,7 +59,7 @@ namespace IdentityServer
                         RoleClaimType = "role"
                     };
                 });
-            
+
             var serviceProvider = services.BuildServiceProvider();
             var googleProvider = serviceProvider.GetService<IProviderStore>().FindProviderById("Google");
             if (googleProvider != null)
@@ -74,15 +75,13 @@ namespace IdentityServer
 
         public void Configure(IApplicationBuilder app)
         {
-            if (Environment.IsDevelopment())
+            if (Environment.EnvironmentName == "Development")
             {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseStaticFiles();
-
             app.UseIdentityServer();
-
             app.UseMvcWithDefaultRoute();
         }
     }
