@@ -1,10 +1,12 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 using System;
+using System.Security.Cryptography.X509Certificates;
 using IdentityServer.Data;
 using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
@@ -12,10 +14,13 @@ namespace IdentityServer
 {
     public class Startup
     {
+        private readonly IConfiguration _config;
+
         public IWebHostEnvironment Environment { get; }
         
-        public Startup(IWebHostEnvironment environment)
+        public Startup(IWebHostEnvironment environment, IConfiguration config)
         {
+            _config = config;
             Environment = environment;
         }
 
@@ -41,7 +46,24 @@ namespace IdentityServer
             }
             else
             {
-                throw new Exception("need to configure key material");
+                var certificateThumbprint = _config.GetSection("Settings").GetValue<string>("CertificateThumbprint");
+
+                X509Certificate2 cert = null;
+                using (var certStore = new X509Store(StoreName.My, StoreLocation.LocalMachine))
+                {
+                    certStore.Open(OpenFlags.ReadOnly);
+                    var certCollection = certStore.Certificates.Find(
+                        X509FindType.FindByThumbprint,
+                        certificateThumbprint,
+                        false);
+
+                    if (certCollection.Count > 0)
+                    {
+                        cert = certCollection[0];
+                    }
+
+                    builder.AddSigningCredential(cert);
+                }
             }
 
             var authBuilder = services.AddAuthentication()
@@ -60,15 +82,15 @@ namespace IdentityServer
                     };
                 });
 
-            var serviceProvider = services.BuildServiceProvider();
-            var googleProvider = serviceProvider.GetService<IProviderStore>().FindProviderById("Google");
-            if (googleProvider != null)
+            var googleClientID = _config.GetSection("Settings").GetValue<string>("GoogleClientID");
+            var googleClientSecret = _config.GetSection("Settings").GetValue<string>("GoogleClientSecret");
+            if (!string.IsNullOrEmpty(googleClientID) && !string.IsNullOrEmpty(googleClientSecret))
             {
                 authBuilder.AddGoogle("Google", options =>
                 {
                     options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                    options.ClientId = googleProvider.ClientId;
-                    options.ClientSecret = googleProvider.ClientSecret;
+                    options.ClientId = googleClientID;
+                    options.ClientSecret = googleClientSecret;
                 });
             }
         }
