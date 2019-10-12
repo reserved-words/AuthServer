@@ -7,6 +7,7 @@ BEGIN
 		[ClientId], 
 		[ClientName], 
 		[Enabled], 
+		[RequireClientSecret],
 		[RedirectUri], 
 		[AllowOfflineAccess], 
 		[PostLogoutRedirectUri], 
@@ -34,6 +35,10 @@ BEGIN
 
 	SELECT [GrantType]
 	FROM [dbo].[ClientGrantTypes]
+	WHERE [ClientId] = @ClientId
+
+	SELECT [CorsOrigin]
+	FROM [dbo].[ClientCorsOrigins]
 	WHERE [ClientId] = @ClientId
 
 END

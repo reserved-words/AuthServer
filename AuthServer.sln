@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Common", "Id
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AuthServer.Sql", "AuthServer.Sql\AuthServer.Sql.sqlproj", "{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hasher", "AuthServer.Hasher\Hasher.csproj", "{62C4EF6F-F601-4475-AA55-67C3D2CC7320}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsClient", "JsClient\JsClient.csproj", "{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +121,30 @@ Global
 		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|x86.ActiveCfg = Release|Any CPU
 		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|x86.Build.0 = Release|Any CPU
 		{42C58FAB-55C2-46BF-8BEF-2CA5955043B4}.Release|x86.Deploy.0 = Release|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Debug|x64.Build.0 = Debug|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Debug|x86.Build.0 = Debug|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Release|x64.ActiveCfg = Release|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Release|x64.Build.0 = Release|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Release|x86.ActiveCfg = Release|Any CPU
+		{62C4EF6F-F601-4475-AA55-67C3D2CC7320}.Release|x86.Build.0 = Release|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Debug|x64.Build.0 = Debug|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Debug|x86.Build.0 = Debug|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Release|x64.ActiveCfg = Release|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Release|x64.Build.0 = Release|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Release|x86.ActiveCfg = Release|Any CPU
+		{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

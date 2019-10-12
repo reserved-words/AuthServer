@@ -1,13 +1,17 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using IdentityServer.Data;
 using IdentityServer4;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace IdentityServer
@@ -35,6 +39,13 @@ namespace IdentityServer
                 .AddTransient<IUserStore, UserStore>()
                 .AddTransient<IProviderStore, ProviderStore>()
                 .AddTransient<IDataFetcher, DataFetcher>();
+
+            var cors = new DefaultCorsPolicyService(new Logger<DefaultCorsPolicyService>())
+            {
+                AllowedOrigins = _config.GetSection("AllowedCorsOrigins").Get<List<string>>()
+            };
+
+            services.AddSingleton<ICorsPolicyService>(cors);
 
             var builder = services.AddIdentityServer()
                 .AddResourceStore<ResourceStore>()

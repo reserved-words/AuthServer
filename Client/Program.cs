@@ -2,7 +2,6 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 using IdentityModel.Client;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,7 +15,7 @@ namespace Client
             // discover endpoints from metadata
             var client = new HttpClient();
 
-            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5000");
+            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5000/");
             if (disco.IsError)
             {
                 Console.WriteLine(disco.Error);
@@ -30,7 +29,6 @@ namespace Client
                 Address = disco.TokenEndpoint,
                 ClientId = "client",
                 ClientSecret = "secret",
-
                 Scope = "api1"
             });
             
@@ -45,19 +43,19 @@ namespace Client
             Console.WriteLine("\n\n");
 
             // call api
-            var apiClient = new HttpClient();
-            apiClient.SetBearerToken(tokenResponse.AccessToken);
+            //var apiClient = new HttpClient();
+            //apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.GetAsync("http://localhost:5001/identity");
-            if (!response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(response.StatusCode);
-            }
-            else
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(JArray.Parse(content));
-            }
+            //var response = await apiClient.GetAsync("http://localhost:5001/identity");
+            //if (!response.IsSuccessStatusCode)
+            //{
+            //    Console.WriteLine(response.StatusCode);
+            //}
+            //else
+            //{
+            //    var content = await response.Content.ReadAsStringAsync();
+            //    Console.WriteLine(JArray.Parse(content));
+            //}
 
             Console.ReadKey();
         }

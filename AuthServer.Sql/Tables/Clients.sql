@@ -3,6 +3,7 @@
 	[ClientId] VARCHAR(20) NOT NULL PRIMARY KEY, 
     [ClientName] VARCHAR(30) NOT NULL, 
     [Enabled] BIT NOT NULL DEFAULT 1, 
+	[RequireClientSecret] BIT NOT NULL DEFAULT 1,
     [RedirectUri] VARCHAR(250) NULL, 
     [AllowOfflineAccess] BIT NOT NULL DEFAULT 0, 
     [PostLogoutRedirectUri] VARCHAR(250) NULL, 

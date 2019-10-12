@@ -22,7 +22,7 @@ namespace IdentityServer
         {
             var client = new Client();
 
-            var dataTables = Enumerable.Range(0, 5).Select(i => new DataTable()).ToArray();
+            var dataTables = Enumerable.Range(0, 6).Select(i => new DataTable()).ToArray();
 
             await _dataFiller.FillAsync(dataTables, "FindClientById", new SqlParameter("@ClientId", clientId));
 
@@ -31,6 +31,7 @@ namespace IdentityServer
             var dtScopes = dataTables[2];
             var dtSecrets = dataTables[3];
             var dtGrantTypes = dataTables[4];
+            var dtCorsOrigins = dataTables[5];
 
             if (dtClient.Rows.Count == 0)
                 throw new AuthenticationException();
@@ -39,6 +40,7 @@ namespace IdentityServer
             client.ClientId = rClient["ClientId"].ToString();
             client.ClientName = rClient["ClientName"].ToString();
             client.Enabled = (bool)rClient["Enabled"];
+            client.RequireClientSecret = (bool)rClient["RequireClientSecret"];
             client.AllowOfflineAccess = (bool)rClient["AllowOfflineAccess"];
             client.EnableLocalLogin = (bool)rClient["EnableLocalLogin"];
             client.RequireConsent = (bool)rClient["RequireConsent"];
@@ -76,6 +78,11 @@ namespace IdentityServer
             foreach (DataRow row in dtGrantTypes.Rows)
             {
                 client.AllowedGrantTypes.Add(row["GrantType"].ToString());
+            }
+
+            foreach (DataRow row in dtCorsOrigins.Rows)
+            {
+                client.AllowedCorsOrigins.Add(row["CorsOrigin"].ToString());
             }
 
             return client;
