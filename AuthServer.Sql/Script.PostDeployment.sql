@@ -1,8 +1,8 @@
 ﻿
-IF NOT EXISTS (SELECT LoginName FROM SYSLOGINS WHERE NAME = 'IIS APPPOOL\Auth')
+IF NOT EXISTS (SELECT LoginName FROM SYSLOGINS WHERE NAME = 'auth-app')
 BEGIN
 	BEGIN TRY  
-		CREATE LOGIN [IIS APPPOOL\Auth] FROM WINDOWS WITH DEFAULT_DATABASE = [Auth], DEFAULT_LANGUAGE = [us_english]
+		CREATE LOGIN [auth-app] FROM WINDOWS WITH DEFAULT_DATABASE = [Auth], DEFAULT_LANGUAGE = [us_english]
 	END TRY  
 	BEGIN CATCH  
 		-- OK - if this fails we're in dev environment  
@@ -10,23 +10,23 @@ BEGIN
 END
 GO
 
-IF EXISTS (SELECT LoginName FROM SYSLOGINS WHERE NAME = 'IIS APPPOOL\Auth')
+IF EXISTS (SELECT LoginName FROM SYSLOGINS WHERE NAME = 'auth-app')
 BEGIN
 
-	IF NOT EXISTS (SELECT [Name] FROM SYSUSERS WHERE [Name] = 'IIS APPPOOL\Auth')
+	IF NOT EXISTS (SELECT [Name] FROM SYSUSERS WHERE [Name] = 'auth-app')
 	BEGIN
-		CREATE USER [IIS APPPOOL\Auth] FOR LOGIN [IIS APPPOOL\Auth] WITH DEFAULT_SCHEMA = dbo
+		CREATE USER [auth-app] FOR LOGIN [auth-app] WITH DEFAULT_SCHEMA = dbo
 	END
 
-	GRANT CONNECT TO [IIS APPPOOL\Auth]
+	GRANT CONNECT TO [auth-app]
 
-	GRANT EXECUTE ON [dbo].[FindApiResourceByName] TO [IIS APPPOOL\Auth]
-	GRANT EXECUTE ON [dbo].[FindApiResourcesByScope] TO [IIS APPPOOL\Auth]
-	GRANT EXECUTE ON [dbo].[FindClientById] TO [IIS APPPOOL\Auth]
-	GRANT EXECUTE ON [dbo].[FindProviderById] TO [IIS APPPOOL\Auth]
-	GRANT EXECUTE ON [dbo].[FindUserByExternalProvider] TO [IIS APPPOOL\Auth]
-	GRANT EXECUTE ON [dbo].[FindUserByUsername] TO [IIS APPPOOL\Auth]
-	GRANT EXECUTE ON [dbo].[GetApiResources] TO [IIS APPPOOL\Auth]
+	GRANT EXECUTE ON [dbo].[FindApiResourceByName] TO [auth-app]
+	GRANT EXECUTE ON [dbo].[FindApiResourcesByScope] TO [auth-app]
+	GRANT EXECUTE ON [dbo].[FindClientById] TO [auth-app]
+	GRANT EXECUTE ON [dbo].[FindProviderById] TO [auth-app]
+	GRANT EXECUTE ON [dbo].[FindUserByExternalProvider] TO [auth-app]
+	GRANT EXECUTE ON [dbo].[FindUserByUsername] TO [auth-app]
+	GRANT EXECUTE ON [dbo].[GetApiResources] TO [auth-app]
 
 END
 GO
