@@ -314,11 +314,23 @@ namespace IdentityServer
             // get context information (client name, post logout redirect URI and iframe for federated signout)
             var logout = await _interaction.GetLogoutContextAsync(logoutId);
 
+            var clientID = logout?.ClientId ?? logout?.ClientIds.FirstOrDefault();
+
+            string redirectUri = null;
+            string clientName = logout?.ClientName;
+
+            if (clientID != null)
+            {
+                var client = await _clientStore.FindClientByIdAsync(clientID);
+                redirectUri = client.PostLogoutRedirectUris.FirstOrDefault();
+                clientName = client.ClientName;
+            }
+
             var vm = new LoggedOutViewModel
             {
                 AutomaticRedirectAfterSignOut = AccountOptions.AutomaticRedirectAfterSignOut,
-                PostLogoutRedirectUri = logout?.PostLogoutRedirectUri,
-                ClientName = string.IsNullOrEmpty(logout?.ClientName) ? logout?.ClientId : logout?.ClientName,
+                PostLogoutRedirectUri = redirectUri,
+                ClientName = clientName,
                 SignOutIframeUrl = logout?.SignOutIFrameUrl,
                 LogoutId = logoutId
             };
