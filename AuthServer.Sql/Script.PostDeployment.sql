@@ -1,34 +1,49 @@
-﻿
-IF NOT EXISTS (SELECT LoginName FROM SYSLOGINS WHERE NAME = 'test-vm\auth-app')
-BEGIN
-	BEGIN TRY  
-		CREATE LOGIN [test-vm\auth-app] FROM WINDOWS WITH DEFAULT_DATABASE = [Auth], DEFAULT_LANGUAGE = [us_english]
-	END TRY  
-	BEGIN CATCH  
-		-- OK - if this fails we're in dev environment  
-	END CATCH
-END
-GO
+﻿BEGIN
+	DECLARE @UserName NVARCHAR(20) = @@SERVERNAME + '\auth-app',
+			@Sql NVARCHAR(200)
 
-IF EXISTS (SELECT LoginName FROM SYSLOGINS WHERE NAME = 'test-vm\auth-app')
-BEGIN
-
-	IF NOT EXISTS (SELECT [Name] FROM SYSUSERS WHERE [Name] = 'test-vm\auth-app')
+	IF NOT EXISTS (SELECT LoginName FROM SYSLOGINS WHERE NAME = @UserName)
 	BEGIN
-		CREATE USER [test-vm\auth-app] FOR LOGIN [test-vm\auth-app] WITH DEFAULT_SCHEMA = dbo
+		BEGIN TRY  
+			SET @Sql = N'CREATE LOGIN [' + @UserName + '] FROM WINDOWS WITH DEFAULT_DATABASE = [Auth], DEFAULT_LANGUAGE = [us_english]'
+			EXECUTE sp_executesql @Sql
+		END TRY  
+		BEGIN CATCH  
+			-- OK - if this fails we're in dev environment  
+		END CATCH
 	END
 
-	GRANT CONNECT TO [test-vm\auth-app]
+	IF EXISTS (SELECT LoginName FROM SYSLOGINS WHERE NAME = @UserName)
+	BEGIN
 
-	GRANT EXECUTE ON [dbo].[AddUserExternalProvider] TO [test-vm\auth-app]
-	GRANT EXECUTE ON [dbo].[FindApiResourceByName] TO [test-vm\auth-app]
-	GRANT EXECUTE ON [dbo].[FindApiResourcesByScope] TO [test-vm\auth-app]
-	GRANT EXECUTE ON [dbo].[FindClientById] TO [test-vm\auth-app]
-	GRANT EXECUTE ON [dbo].[FindProviderById] TO [test-vm\auth-app]
-	GRANT EXECUTE ON [dbo].[FindUserByEmail] TO [test-vm\auth-app]
-	GRANT EXECUTE ON [dbo].[FindUserByExternalProvider] TO [test-vm\auth-app]
-	GRANT EXECUTE ON [dbo].[FindUserByUsername] TO [test-vm\auth-app]
-	GRANT EXECUTE ON [dbo].[GetApiResources] TO [test-vm\auth-app]
+		IF NOT EXISTS (SELECT [Name] FROM SYSUSERS WHERE [Name] = @UserName)
+		BEGIN
+			SET @Sql = N'CREATE USER [' + @UserName + '] FOR LOGIN [' + @UserName + '] WITH DEFAULT_SCHEMA = dbo'
+			EXECUTE sp_executesql @Sql
+		END
 
+		SET @Sql = N'GRANT CONNECT TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+
+		SET @Sql = N'GRANT EXECUTE ON [dbo].[AddUserExternalProvider] TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+		SET @Sql = N'GRANT EXECUTE ON [dbo].[FindApiResourceByName] TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+		SET @Sql = N'GRANT EXECUTE ON [dbo].[FindApiResourcesByScope] TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+		SET @Sql = N'GRANT EXECUTE ON [dbo].[FindClientById] TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+		SET @Sql = N'GRANT EXECUTE ON [dbo].[FindProviderById] TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+		SET @Sql = N'GRANT EXECUTE ON [dbo].[FindUserByEmail] TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+		SET @Sql = N'GRANT EXECUTE ON [dbo].[FindUserByExternalProvider] TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+		SET @Sql = N'GRANT EXECUTE ON [dbo].[FindUserByUsername] TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+		SET @Sql = N'GRANT EXECUTE ON [dbo].[GetApiResources] TO [' + @UserName + ']'
+		EXECUTE sp_executesql @Sql
+
+	END
 END
 GO
