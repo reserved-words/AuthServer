@@ -9,10 +9,30 @@ namespace IdentityServer
     public class UserStore : IUserStore
     {
         private readonly IDataFetcher _dataFetcher;
+        private readonly IDataUpdater _dataUpdater;
 
-        public UserStore(IDataFetcher dataFetcher)
+        public UserStore(IDataFetcher dataFetcher, IDataUpdater dataUpdater)
         {
             _dataFetcher = dataFetcher;
+            _dataUpdater = dataUpdater;
+        }
+
+        public void AddExternalProviderId(User user, string provider, string providerUserId)
+        {
+            _dataUpdater.Execute("AddUserExternalProvider",
+                new SqlParameter("@SubjectId", user.SubjectId),
+                new SqlParameter("@ProviderId", provider),
+                new SqlParameter("@ProviderUserId", providerUserId));
+        }
+
+        public User FindByEmail(string email)
+        {
+            var dataTables = Enumerable.Range(0, 2).Select(i => new DataTable()).ToArray();
+
+            _dataFetcher.Fill(dataTables, "FindUserByEmail",
+                new SqlParameter("@Email", email));
+
+            return GetUserFromDataTables(dataTables);
         }
 
         public User FindByExternalProvider(string provider, string providerUserId)

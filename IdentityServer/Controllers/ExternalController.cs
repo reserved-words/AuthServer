@@ -192,6 +192,20 @@ namespace Host.Quickstart.Account
             // find external user
             var user = _users.FindByExternalProvider(provider, providerUserId);
 
+            if (user == null)
+            {
+                var email = claims.SingleOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
+                if (email != null)
+                {
+                    user = _users.FindByEmail(email);
+
+                    if (user != null)
+                    {
+                        _users.AddExternalProviderId(user, provider, providerUserId);
+                    }
+                }
+            }
+
             return (user, provider, providerUserId, claims);
         }
 
