@@ -20,10 +20,12 @@ BEGIN
 
 	GRANT CONNECT TO [test-vm\auth-app]
 
+	GRANT EXECUTE ON [dbo].[AddUserExternalProvider] TO [test-vm\auth-app]
 	GRANT EXECUTE ON [dbo].[FindApiResourceByName] TO [test-vm\auth-app]
 	GRANT EXECUTE ON [dbo].[FindApiResourcesByScope] TO [test-vm\auth-app]
 	GRANT EXECUTE ON [dbo].[FindClientById] TO [test-vm\auth-app]
 	GRANT EXECUTE ON [dbo].[FindProviderById] TO [test-vm\auth-app]
+	GRANT EXECUTE ON [dbo].[FindUserByEmail] TO [test-vm\auth-app]
 	GRANT EXECUTE ON [dbo].[FindUserByExternalProvider] TO [test-vm\auth-app]
 	GRANT EXECUTE ON [dbo].[FindUserByUsername] TO [test-vm\auth-app]
 	GRANT EXECUTE ON [dbo].[GetApiResources] TO [test-vm\auth-app]
