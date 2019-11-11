@@ -3,7 +3,7 @@ param($DomainName, $AppName, $AppUserPassword, $CertificateThumbprint)
 Import-Module $PSScriptRoot\SetupTools.psm1
 Import-Module $PSScriptRoot\AddUserToCertificate.psm1
 
-$AppUserName = $DomainName + '\auth-app'
+$AppUserName = 'auth-app'
 
 Run-Setup -DomainName $DomainName
 Setup-WebApp -AppName $AppName
