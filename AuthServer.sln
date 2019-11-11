@@ -19,7 +19,15 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AuthServer.Sql", "AuthServe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hasher", "AuthServer.Hasher\Hasher.csproj", "{62C4EF6F-F601-4475-AA55-67C3D2CC7320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsClient", "JsClient\JsClient.csproj", "{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsClient", "JsClient\JsClient.csproj", "{0B65D6CB-87B3-4A3C-8FAE-23F106A441AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeploymentTools", "DeploymentTools", "{7878F202-CF94-47BA-8B4E-CDD02420795C}"
+	ProjectSection(SolutionItems) = preProject
+		AddUserToCertificate.psm1 = AddUserToCertificate.psm1
+		AppSetup.ps1 = AppSetup.ps1
+		SetupTools.psm1 = SetupTools.psm1
+		UserRights.psm1 = UserRights.psm1
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
