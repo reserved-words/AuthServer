@@ -23,10 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsClient", "JsClient\JsClie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeploymentTools", "DeploymentTools", "{7878F202-CF94-47BA-8B4E-CDD02420795C}"
 	ProjectSection(SolutionItems) = preProject
-		AddUserToCertificate.psm1 = AddUserToCertificate.psm1
-		AppSetup.ps1 = AppSetup.ps1
-		SetupTools.psm1 = SetupTools.psm1
-		UserRights.psm1 = UserRights.psm1
+		DeploymentTools\AddUserToCertificate.psm1 = DeploymentTools\AddUserToCertificate.psm1
+		DeploymentTools\AppSetup.ps1 = DeploymentTools\AppSetup.ps1
+		DeploymentTools\SetupTools.psm1 = DeploymentTools\SetupTools.psm1
+		DeploymentTools\UserRights.psm1 = DeploymentTools\UserRights.psm1
 	EndProjectSection
 EndProject
 Global
