@@ -24,7 +24,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DeploymentTools", "DeploymentTools", "{7878F202-CF94-47BA-8B4E-CDD02420795C}"
 	ProjectSection(SolutionItems) = preProject
 		DeploymentTools\AddUserToCertificate.psm1 = DeploymentTools\AddUserToCertificate.psm1
-		DeploymentTools\AppSetup.ps1 = DeploymentTools\AppSetup.ps1
+		DeploymentTools\PostAppSetup.ps1 = DeploymentTools\PostAppSetup.ps1
+		DeploymentTools\PreAppSetup.ps1 = DeploymentTools\PreAppSetup.ps1
 		DeploymentTools\SetupTools.psm1 = DeploymentTools\SetupTools.psm1
 		DeploymentTools\UserRights.psm1 = DeploymentTools\UserRights.psm1
 	EndProjectSection
