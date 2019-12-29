@@ -8,9 +8,6 @@
     <None Include="wwwroot\css\site.css" />
     <None Include="wwwroot\css\site.less" />
     <None Include="wwwroot\css\site.min.css" />
-    <None Include="wwwroot\favicon.ico" />
-    <None Include="wwwroot\icon.jpg" />
-    <None Include="wwwroot\icon.png" />
     <None Include="wwwroot\js\signin-redirect.js" />
     <None Include="wwwroot\js\signout-redirect.js" />
     <None Include="wwwroot\lib\bootstrap\css\bootstrap.css" />
