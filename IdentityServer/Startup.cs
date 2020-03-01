@@ -11,8 +11,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 
 namespace IdentityServer
 {
@@ -79,20 +77,6 @@ namespace IdentityServer
             }
 
             var authBuilder = services.AddAuthentication();
-                //.AddOpenIdConnect("oidc", "OpenID Connect", options =>
-                //{
-                //    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                //    options.SignOutScheme = IdentityServerConstants.SignoutScheme;
-                //    options.SaveTokens = true;
-                //    options.Authority = "https://demo.identityserver.io/";
-                //    options.ClientId = "implicit";
-
-                //    options.TokenValidationParameters = new TokenValidationParameters
-                //    {
-                //        NameClaimType = "name",
-                //        RoleClaimType = "role"
-                //    };
-                //});
 
             var googleClientID = _config.GetSection("Settings").GetValue<string>("GoogleClientID");
             var googleClientSecret = _config.GetSection("Settings").GetValue<string>("GoogleClientSecret");

@@ -87,6 +87,8 @@
     <Build Include="Tables\ClientCorsOrigins.sql" />
     <Build Include="Stored Procedures\FindUserByEmail.sql" />
     <Build Include="Stored Procedures\AddUserExternalProvider.sql" />
+    <Build Include="Stored Procedures\AddResource.sql" />
+    <Build Include="Stored Procedures\AddClient.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AuthServer.Sql.refactorlog" />
