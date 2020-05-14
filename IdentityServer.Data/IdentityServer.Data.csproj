@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IdentityModel" Version="4.1.1" />
+    <PackageReference Include="IdentityModel" Version="4.2.0" />
     <PackageReference Include="IdentityServer4" Version="3.1.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
   </ItemGroup>

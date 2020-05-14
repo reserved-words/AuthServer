@@ -15,7 +15,8 @@ BEGIN
 		[RequireConsent], 
 		[AllowRememberConsent], 
 		[ClientUri], 
-		[LogoUri]
+		[LogoUri],
+		[AccessTokenLifetimeMinutes]
 	FROM
 		[dbo].[Clients]
 	WHERE 

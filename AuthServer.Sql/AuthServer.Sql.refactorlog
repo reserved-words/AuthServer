@@ -119,4 +119,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ProviderUserId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="f8b8e52b-6e21-47ab-ac60-e19894e06237" ChangeDateTime="05/14/2020 12:33:36">
+    <Property Name="ElementName" Value="[dbo].[Clients].[AccessTokenLifetimeSeconds]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Clients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AccessTokenLifetimeMinutes" />
+  </Operation>
 </Operations>

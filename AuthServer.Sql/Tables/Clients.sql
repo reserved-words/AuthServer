@@ -11,5 +11,6 @@
     [RequireConsent] BIT NOT NULL DEFAULT 1, 
     [AllowRememberConsent] BIT NOT NULL DEFAULT 1, 
     [ClientUri] VARCHAR(250) NULL, 
-    [LogoUri] VARCHAR(250) NULL
+    [LogoUri] VARCHAR(250) NULL,
+    [AccessTokenLifetimeMinutes] INT NOT NULL DEFAULT 60
 )

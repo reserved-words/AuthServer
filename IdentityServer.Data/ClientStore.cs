@@ -47,6 +47,7 @@ namespace IdentityServer
             client.AllowRememberConsent = (bool)rClient["AllowRememberConsent"];
             client.ClientUri = rClient["ClientUri"].ToString();
             client.LogoUri = rClient["LogoUri"].ToString();
+            client.AccessTokenLifetime = 60 * (int)rClient["AccessTokenLifetimeMinutes"];
 
             var redirectUri = rClient["RedirectUri"].ToString();
             if (!string.IsNullOrEmpty(redirectUri))
